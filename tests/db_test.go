@@ -1,12 +1,15 @@
 package tests
 import (
-	"/mnt/c/Users/Ashwin/Documents/DBMS-uniman/includes"
+	"github.com/ashwin/dbms-uniman/includes"
 	"testing"
-	"github.com/stretchr/testify/assert"
+	"fmt"
 )
-func TestDBConnection(t *testing.T){
-	db := includes.InitDB
-	defer db.close()
-	err := db.Ping()
-	assert.NoError(t, err, "Expected no error when pinging the database")
+func TestDatabaseConnection(t *testing.T) {
+    db := includes.InitDB() 
+    defer db.Close()    
+    err := db.Ping()
+    if err != nil {
+        t.Fatalf("Failed to ping database: %v", err)
+    }
 }
+
