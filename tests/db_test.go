@@ -2,7 +2,6 @@ package tests
 import (
 	"github.com/ashwin/dbms-uniman/includes"
 	"testing"
-	"fmt"
 )
 func TestDatabaseConnection(t *testing.T) {
     db := includes.InitDB() 
