@@ -220,7 +220,7 @@ CREATE TABLE `student` (
   `mobile_number` varchar(20) NOT NULL,
   `email` varchar(255) NOT NULL,
   `program_enrolled` varchar(300) DEFAULT NULL,
-  `program_type` enum('UG','PG','PostPG') DEFAULT NULL,
+  `type` enum('UG','PG','Phd') DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mobile_number` (`mobile_number`),
   UNIQUE KEY `email` (`email`)
@@ -255,4 +255,4 @@ CREATE TABLE `teaches` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-04-29 14:38:59
+-- Dump completed on 2025-05-01 14:29:48
