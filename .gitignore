@@ -1,2 +1,28 @@
 .env
+# Go binaries
+*.exe
+*.out
+*.test
+
+# Build folders
+/bin/
+/build/
+/dist/
+
+# Logs
+*.log
+/logs/
+
+# Env files
+.env
+
+# Dependency vendors (if used)
+vendor/
+
+# Editor configs (optional)
+.vscode/
+.idea/
+
+# Test coverage
+coverage.out
 
