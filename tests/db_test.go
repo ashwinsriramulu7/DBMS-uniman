@@ -1,6 +1,6 @@
 package tests
 import (
-	"github.com/ashwin/dbms-uniman/includes"
+	"github.com/ashwinsriramulu7/DBMS-uniman/includes"
 	"testing"
 )
 func TestDatabaseConnection(t *testing.T) {

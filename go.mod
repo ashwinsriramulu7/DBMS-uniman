@@ -2,7 +2,7 @@ go 1.21.0
 
 toolchain go1.21.8
 
-module github.com/ashwin/dbms-uniman
+module github.com/ashwinsriramulu7/DBMS-uniman
 
 require (
 	github.com/go-sql-driver/mysql v1.9.2

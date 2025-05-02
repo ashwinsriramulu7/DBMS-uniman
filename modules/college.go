@@ -2,7 +2,7 @@ package modules
 
 import (
 	"fmt"
-	"github.com/ashwin/dbms-uniman/includes"
+	"github.com/ashwinsriramulu7/DBMS-uniman/includes"
 )
 
 func AddCollege(data map[string]any) error {

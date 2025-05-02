@@ -2,7 +2,7 @@ package tests
 
 import (
 	"testing"
-	"github.com/ashwin/dbms-uniman/modules"
+	"github.com/ashwinsriramulu7/DBMS-uniman/modules"
 )
 func TestAddCollege(t *testing.T) {
 	testData := map[string]any{

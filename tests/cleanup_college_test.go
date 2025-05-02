@@ -3,7 +3,7 @@ package tests
 import (
 	"testing"
 	"log"
-	"github.com/ashwin/dbms-uniman/includes"
+	"github.com/ashwinsriramulu7/DBMS-uniman/includes"
 )
 
 func TestCleanupColleges(t *testing.T) {
