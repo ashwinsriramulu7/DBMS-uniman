@@ -5,7 +5,7 @@ import (
     "log"
 )
 func CleanupColleges() error {
-    db := InitDB()
+	db:= InitDB()
     defer db.Close()
 
     query := `DELETE FROM college WHERE name LIKE ?`
