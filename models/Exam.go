@@ -1,12 +1,9 @@
 package models
-
-type ClassSchedule struct {
+type Exam struct {
     ID         int
     CourseID   int
-    FacultyID  int
-    DayOfWeek  string
-    StartTime  string
-    EndTime    string
-    Location   string
+    ExamType   string
+    Date       string
+    TotalMarks int
 }
 
