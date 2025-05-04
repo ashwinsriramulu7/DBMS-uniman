@@ -1,10 +1,10 @@
 package tests
 
 import (
-	"testing"
-	"github.com/ashwinsriramulu7/DBMS-uniman/modules"
-	"github.com/ashwinsriramulu7/DBMS-uniman/models"
 	"github.com/ashwinsriramulu7/DBMS-uniman/includes"
+	"github.com/ashwinsriramulu7/DBMS-uniman/models"
+	"github.com/ashwinsriramulu7/DBMS-uniman/modules"
+	"testing"
 )
 
 func TestCreateCourse(t *testing.T) {
@@ -29,4 +29,3 @@ func TestCreateCourse(t *testing.T) {
 	}
 	db.Exec("DELETE FROM course WHERE course_code = ?", testCourse.CourseCode)
 }
-

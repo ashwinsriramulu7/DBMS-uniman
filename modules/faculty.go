@@ -1,10 +1,12 @@
 package modules
+
 import (
 	"fmt"
-	"log"
 	"github.com/ashwinsriramulu7/DBMS-uniman/includes"
 	"github.com/ashwinsriramulu7/DBMS-uniman/models"
+	"log"
 )
+
 func CreateFaculty(f models.Faculty) {
 	db := includes.InitDB()
 	defer db.Close()
@@ -19,4 +21,3 @@ func CreateFaculty(f models.Faculty) {
 	}
 	fmt.Println("Faculty added successfully")
 }
-

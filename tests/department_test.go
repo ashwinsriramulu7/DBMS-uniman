@@ -1,10 +1,10 @@
 package tests
 
 import (
-	"testing"
-	"github.com/ashwinsriramulu7/DBMS-uniman/modules"
-	"github.com/ashwinsriramulu7/DBMS-uniman/models"
 	"github.com/ashwinsriramulu7/DBMS-uniman/includes"
+	"github.com/ashwinsriramulu7/DBMS-uniman/models"
+	"github.com/ashwinsriramulu7/DBMS-uniman/modules"
+	"testing"
 )
 
 func TestCreateDepartment(t *testing.T) {
@@ -13,8 +13,8 @@ func TestCreateDepartment(t *testing.T) {
 
 	testDepartment := models.Department{
 		Name:             "Test Department",
-		HeadOfDepartment: 1,  // Assumes a faculty with id=1 exists
-		College:          1,  // Assumes a college with id=1 exists
+		HeadOfDepartment: 1, // Assumes a faculty with id=1 exists
+		College:          1, // Assumes a college with id=1 exists
 	}
 	modules.CreateDepartment(testDepartment)
 
@@ -30,4 +30,3 @@ func TestCreateDepartment(t *testing.T) {
 	}
 	db.Exec("DELETE FROM department WHERE name = ?", testDepartment.Name)
 }
-

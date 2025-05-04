@@ -2,9 +2,9 @@ package modules
 
 import (
 	"fmt"
-	"log"
 	"github.com/ashwinsriramulu7/DBMS-uniman/includes"
 	"github.com/ashwinsriramulu7/DBMS-uniman/models"
+	"log"
 )
 
 func CreateStudent(s models.Student) {
@@ -21,4 +21,3 @@ func CreateStudent(s models.Student) {
 	}
 	fmt.Println("Student added successfully")
 }
-

@@ -2,9 +2,9 @@ package modules
 
 import (
 	"fmt"
-	"log"
 	"github.com/ashwinsriramulu7/DBMS-uniman/includes"
 	"github.com/ashwinsriramulu7/DBMS-uniman/models"
+	"log"
 )
 
 func CreateDepartment(d models.Department) {
@@ -21,4 +21,3 @@ func CreateDepartment(d models.Department) {
 	}
 	fmt.Println("Department added successfully")
 }
-

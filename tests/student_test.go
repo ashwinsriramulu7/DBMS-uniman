@@ -1,10 +1,10 @@
 package tests
 
 import (
-	"testing"
-	"github.com/ashwinsriramulu7/DBMS-uniman/modules"
-	"github.com/ashwinsriramulu7/DBMS-uniman/models"
 	"github.com/ashwinsriramulu7/DBMS-uniman/includes"
+	"github.com/ashwinsriramulu7/DBMS-uniman/models"
+	"github.com/ashwinsriramulu7/DBMS-uniman/modules"
+	"testing"
 )
 
 func TestCreateStudent(t *testing.T) {
@@ -12,11 +12,11 @@ func TestCreateStudent(t *testing.T) {
 	defer db.Close()
 
 	testStudent := models.Student{
-		Name:           "Test Student",
-		MobileNumber:   "8888888888",
-		Email:          "teststudent@example.com",
+		Name:            "Test Student",
+		MobileNumber:    "8888888888",
+		Email:           "teststudent@example.com",
 		ProgramEnrolled: "B.Tech",
-		Type:           "UG",
+		Type:            "UG",
 	}
 	modules.CreateStudent(testStudent)
 
@@ -31,4 +31,3 @@ func TestCreateStudent(t *testing.T) {
 	}
 	db.Exec("DELETE FROM student WHERE email = ?", testStudent.Email)
 }
-

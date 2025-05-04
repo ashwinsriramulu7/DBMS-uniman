@@ -1,10 +1,10 @@
 package tests
 
 import (
-	"testing"
-	"github.com/ashwinsriramulu7/DBMS-uniman/modules"
-	"github.com/ashwinsriramulu7/DBMS-uniman/models"
 	"github.com/ashwinsriramulu7/DBMS-uniman/includes"
+	"github.com/ashwinsriramulu7/DBMS-uniman/models"
+	"github.com/ashwinsriramulu7/DBMS-uniman/modules"
+	"testing"
 )
 
 func TestCreateFaculty(t *testing.T) {
@@ -32,4 +32,3 @@ func TestCreateFaculty(t *testing.T) {
 	}
 	db.Exec("DELETE FROM faculty WHERE email = ?", testFaculty.Email)
 }
-
