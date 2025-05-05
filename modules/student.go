@@ -21,3 +21,24 @@ func CreateStudent(s models.Student) {
 	}
 	fmt.Println("Student added successfully")
 }
+func GetStudentByID(id int) models.Student {
+	db := includes.InitDB()
+	defer db.Close()
+	var s models.Student
+	err := db.QueryRow("SELECT * FROM student WHERE id = ?", id).Scan(
+		&s.ID, &s.Name, &s.MobileNumber, &s.Email, &s.ProgramEnrolled, &s.Type)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return s
+}
+
+func DeleteStudentByID(id int) {
+	db := includes.InitDB()
+	defer db.Close()
+	_, err := db.Exec("DELETE FROM student WHERE id = ?", id)
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+

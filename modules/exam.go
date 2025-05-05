@@ -19,3 +19,24 @@ func CreateExam(e models.Exam) {
 		log.Fatal(err)
 	}
 }
+func GetExamByID(id int) models.Exam {
+	db := includes.InitDB()
+	defer db.Close()
+	var e models.Exam
+	err := db.QueryRow("SELECT * FROM exam WHERE id = ?", id).Scan(
+		&e.ID, &e.CourseID, &e.ExamType, &e.Date, &e.TotalMarks)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return e
+}
+
+func DeleteExamByID(id int) {
+	db := includes.InitDB()
+	defer db.Close()
+	_, err := db.Exec("DELETE FROM exam WHERE id = ?", id)
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+

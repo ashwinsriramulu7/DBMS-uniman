@@ -19,3 +19,24 @@ func CreateFeePayment(f models.FeePayment) {
 		log.Fatal(err)
 	}
 }
+func GetFeePaymentByID(id int) models.FeePayment {
+	db := includes.InitDB()
+	defer db.Close()
+	var f models.FeePayment
+	err := db.QueryRow("SELECT * FROM fee_payment WHERE id = ?", id).Scan(
+		&f.ID, &f.StudentID, &f.Amount, &f.DatePaid, &f.PaymentMode)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return f
+}
+
+func DeleteFeePaymentByID(id int) {
+	db := includes.InitDB()
+	defer db.Close()
+	_, err := db.Exec("DELETE FROM fee_payment WHERE id = ?", id)
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+

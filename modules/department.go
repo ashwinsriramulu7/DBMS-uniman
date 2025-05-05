@@ -21,3 +21,24 @@ func CreateDepartment(d models.Department) {
 	}
 	fmt.Println("Department added successfully")
 }
+func GetDepartmentByID(id int) models.Department {
+	db := includes.InitDB()
+	defer db.Close()
+	var d models.Department
+	err := db.QueryRow("SELECT * FROM department WHERE id = ?", id).Scan(
+		&d.ID, &d.Name, &d.HeadOfDepartment, &d.College)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return d
+}
+
+func DeleteDepartmentByID(id int) {
+	db := includes.InitDB()
+	defer db.Close()
+	_, err := db.Exec("DELETE FROM department WHERE id = ?", id)
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+

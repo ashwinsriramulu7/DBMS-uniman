@@ -19,3 +19,24 @@ func CreateEnrollment(e models.Enrollment) {
 		log.Fatal(err)
 	}
 }
+func GetEnrollmentByID(id int) models.Enrollment {
+	db := includes.InitDB()
+	defer db.Close()
+	var e models.Enrollment
+	err := db.QueryRow("SELECT * FROM enrollment WHERE id = ?", id).Scan(
+		&e.ID, &e.StudentID, &e.CourseID, &e.Semester, &e.Year, &e.Grade)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return e
+}
+
+func DeleteEnrollmentByID(id int) {
+	db := includes.InitDB()
+	defer db.Close()
+	_, err := db.Exec("DELETE FROM enrollment WHERE id = ?", id)
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+

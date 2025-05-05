@@ -21,3 +21,24 @@ func CreateCollege(newCollege models.College) {
 	}
 	fmt.Println("College added successfully")
 }
+func GetClassScheduleByID(id int) models.ClassSchedule {
+	db := includes.InitDB()
+	defer db.Close()
+	var cs models.ClassSchedule
+	err := db.QueryRow("SELECT * FROM class_schedule WHERE id = ?", id).Scan(
+		&cs.ID, &cs.CourseID, &cs.FacultyID, &cs.DayOfWeek, &cs.StartTime, &cs.EndTime, &cs.Location)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return cs
+}
+
+func DeleteClassScheduleByID(id int) {
+	db := includes.InitDB()
+	defer db.Close()
+	_, err := db.Exec("DELETE FROM class_schedule WHERE id = ?", id)
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+

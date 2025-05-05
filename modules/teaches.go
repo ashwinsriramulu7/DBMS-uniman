@@ -23,3 +23,24 @@ func CreateTeaches(t models.Teaches) {
 	}
 	fmt.Println("Teaches entry added.")
 }
+func GetTeachesByID(id int) models.Teaches {
+	db := includes.InitDB()
+	defer db.Close()
+	var t models.Teaches
+	err := db.QueryRow("SELECT * FROM teaches WHERE id = ?", id).Scan(
+		&t.ID, &t.FacultyID, &t.CourseID, &t.Semester, &t.Year)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return t
+}
+
+func DeleteTeachesByID(id int) {
+	db := includes.InitDB()
+	defer db.Close()
+	_, err := db.Exec("DELETE FROM teaches WHERE id = ?", id)
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+

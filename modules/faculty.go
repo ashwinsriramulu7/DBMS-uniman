@@ -21,3 +21,24 @@ func CreateFaculty(f models.Faculty) {
 	}
 	fmt.Println("Faculty added successfully")
 }
+func GetFacultyByID(id int) models.Faculty {
+	db := includes.InitDB()
+	defer db.Close()
+	var f models.Faculty
+	err := db.QueryRow("SELECT * FROM faculty WHERE id = ?", id).Scan(
+		&f.ID, &f.Name, &f.MobileNumber, &f.Email, &f.Address, &f.Type, &f.Title)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return f
+}
+
+func DeleteFacultyByID(id int) {
+	db := includes.InitDB()
+	defer db.Close()
+	_, err := db.Exec("DELETE FROM faculty WHERE id = ?", id)
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+

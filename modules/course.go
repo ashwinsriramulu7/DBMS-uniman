@@ -21,3 +21,23 @@ func CreateCourse(c models.Course) {
 	}
 	fmt.Println("Course added successfully")
 }
+func GetCourseByID(id int) models.Course {
+	db := includes.InitDB()
+	defer db.Close()
+	var c models.Course
+	err := db.QueryRow("SELECT * FROM course WHERE id = ?", id).Scan(&c.ID, &c.DepartmentID, &c.CourseCode)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return c
+}
+
+func DeleteCourseByID(id int) {
+	db := includes.InitDB()
+	defer db.Close()
+	_, err := db.Exec("DELETE FROM course WHERE id = ?", id)
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
