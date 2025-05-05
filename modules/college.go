@@ -21,22 +21,21 @@ func CreateCollege(newCollege models.College) {
 	}
 	fmt.Println("College added successfully")
 }
-func GetClassScheduleByID(id int) models.ClassSchedule {
+func GetCollegeByID(id int) models.College {
 	db := includes.InitDB()
 	defer db.Close()
-	var cs models.ClassSchedule
-	err := db.QueryRow("SELECT * FROM class_schedule WHERE id = ?", id).Scan(
-		&cs.ID, &cs.CourseID, &cs.FacultyID, &cs.DayOfWeek, &cs.StartTime, &cs.EndTime, &cs.Location)
+	var c models.College
+	err := db.QueryRow("SELECT * FROM college WHERE id = ?", id).Scan(&c.ID, &c.Name, &c.Location, &c.Estd)
 	if err != nil {
 		log.Fatal(err)
 	}
-	return cs
+	return c
 }
 
-func DeleteClassScheduleByID(id int) {
+func DeleteCollegeByID(id int) {
 	db := includes.InitDB()
 	defer db.Close()
-	_, err := db.Exec("DELETE FROM class_schedule WHERE id = ?", id)
+	_, err := db.Exec("DELETE FROM college WHERE id = ?", id)
 	if err != nil {
 		log.Fatal(err)
 	}

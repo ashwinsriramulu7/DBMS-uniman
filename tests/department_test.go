@@ -30,3 +30,28 @@ func TestCreateDepartment(t *testing.T) {
 	}
 	db.Exec("DELETE FROM department WHERE name = ?", testDepartment.Name)
 }
+func TestGetAndDeleteDepartment(t *testing.T) {
+    db := includes.InitDB()
+    defer db.Close()
+
+    testDepartment := models.Department{Name: "GetDelete Dept", HeadOfDepartment: 1, College: 1}
+    modules.CreateDepartment(testDepartment)
+
+    var id int
+    err := db.QueryRow("SELECT id FROM department WHERE name = ?", testDepartment.Name).Scan(&id)
+    if err != nil {
+        t.Fatalf("Failed to get inserted department ID: %v", err)
+    }
+
+    got := modules.GetDepartmentByID(id)
+    if got.Name != testDepartment.Name || got.HeadOfDepartment != testDepartment.HeadOfDepartment || got.College != testDepartment.College {
+        t.Errorf("GetDepartmentByID failed: expected %+v, got %+v", testDepartment, got)
+    }
+
+    modules.DeleteDepartmentByID(id)
+    err = db.QueryRow("SELECT id FROM department WHERE id = ?", id).Scan(&id)
+    if err == nil {
+        t.Error("DeleteDepartmentByID failed: record still exists")
+    }
+}
+

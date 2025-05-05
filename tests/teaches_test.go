@@ -22,3 +22,4 @@ func TestCreateTeaches(t *testing.T) {
 
 	db.Exec("DELETE FROM teaches WHERE faculty_id = 1 AND course_id = 1")
 }
+

@@ -22,3 +22,32 @@ func TestCreateClassSchedule(t *testing.T) {
 
 	db.Exec("DELETE FROM class_schedule WHERE course_id = 1 AND faculty_id = 1")
 }
+func TestGetAndDeleteClassSchedule(t *testing.T) {
+    db := includes.InitDB()
+    defer db.Close()
+
+    // Insert
+    cs := models.ClassSchedule{CourseID: 1, FacultyID: 1, DayOfWeek: "Tuesday", StartTime: "12:00:00", EndTime: "13:00:00", Location: "Room 202"}
+    modules.CreateClassSchedule(cs)
+
+    // Get ID
+    var id int
+    err := db.QueryRow("SELECT id FROM class_schedule WHERE course_id = 1 AND faculty_id = 1 AND location = 'Room 202'").Scan(&id)
+    if err != nil {
+        t.Fatalf("Failed to get inserted class_schedule ID: %v", err)
+    }
+
+    // Get
+    got := modules.GetClassScheduleByID(id)
+    if got.Location != cs.Location || got.CourseID != cs.CourseID || got.FacultyID != cs.FacultyID {
+        t.Errorf("GetClassScheduleByID failed: expected %+v, got %+v", cs, got)
+    }
+
+    // Delete
+    modules.DeleteClassScheduleByID(id)
+    err = db.QueryRow("SELECT id FROM class_schedule WHERE id = ?", id).Scan(&id)
+    if err == nil {
+        t.Error("DeleteClassScheduleByID failed: record still exists")
+    }
+}
+
